@@ -1,0 +1,88 @@
+<link rel="import" href="bower_components/polymer/polymer-element.html">
+<link rel="import" href="bower_components/polymer/lib/mixins/gesture-event-listeners.html">
+
+<dom-module id="tech-tour">
+  <template>
+    <style>
+      :host {
+        display: block;
+        font-family: "Roboto", "Helvetica";
+      }
+
+      #tech-tour-event{
+        width: 100%;
+        display: flex;
+      }
+
+      #tech-tour-event img{
+        width: 50%;
+      }
+
+      div.event-info{
+        width: 40%;
+      }
+
+      :host([pressed]) {
+        border: 1px solid #ccc;
+      }
+    </style>
+    <div class="content">
+      <div id="tech-tour-event">
+        <div id="image-content" class="event-info">
+          <img src="../images/google-developers-logo.png" alt="Devfest NE Logo">
+        </div>
+        <div id="text-event-content" class="event-info">
+          <h2> GDG Tech Tour Season</h2>
+          <h2>[[city]] Event</h2>
+        </div>
+      </div>
+    </div>  
+    
+    
+  </template>
+
+  <script>
+    class TechTour extends Polymer.GestureEventListeners(Polymer.Element) {
+      static get is() { return 'tech-tour'; }
+      static get properties() {
+        return {
+          city: {
+            type: String,
+            value: 'Caruaru'
+          },
+          pressed: {
+            type: Boolean,
+            notify: true,
+            reflectToAttribute: true,
+            value: false
+          }
+        };
+      }
+
+      constructor() {
+        super();
+        Polymer.Gestures.addListener(this, 'tap', () => this._toggleEvent());
+      }
+
+      _toggleEvent() {
+        this.pressed = !this.pressed;
+      }
+
+      ready() {
+        super.ready();
+        console.log('Custom element ready!');
+      }
+
+      connectedCallback() {
+        super.connectedCallback();
+        console.log('Custom element created!');
+      }
+    }
+    
+    //props, data bindind, observer
+    //Custom Properties, tap event?, custom styles, mixin classe outras features do demo de element
+    //objetivo - usar as principais features de shadom dom e custom elements
+    //tag custom style
+    window.customElements.define(TechTour.is, TechTour);
+  </script>
+</dom-module>

@@ -1,0 +1,22 @@
+<link rel="import" href="bower_components/polymer/polymer-element.html">
+<link rel="import" href="redux-demo.html">
+
+<dom-module id="redux-example">
+  <template>
+    <style>
+      :host {
+        display: block;
+      }
+    </style>
+    <p>Será que o Redux Devtools Funciona aqui?</h2>
+    <redux-demo></redux-demo>
+  </template>
+
+  <script>
+    class ReduxExample extends Polymer.Element {
+      static get is() { return 'redux-example'; }
+    }
+
+    window.customElements.define(ReduxExample.is, ReduxExample);
+  </script>
+</dom-module>
